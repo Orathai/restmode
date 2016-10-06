@@ -1,0 +1,13 @@
+{
+  "agreementStatus": "PROCESSING",
+  "agreementModel": {
+    "agreementDetail": "property loan",
+    "id": 1
+  },
+  "customerModel": {
+    "customerEmail": "cusEmail1@mail.com",
+    "customerName": "FirstName LastName 1",
+    "id": 1
+  },
+  "id": 5
+}
