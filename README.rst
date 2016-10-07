@@ -1,4 +1,5 @@
-# restmode
+restmode
+========
 
 The NIAM diagram of restmode database.
 
