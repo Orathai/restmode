@@ -63,3 +63,5 @@ Testing application with cURL
         ...
       ]
 
+*And you can now see agreementStatus is "SENT_TO_CUSTOMER" with the customer "Peter Pan" and the deal is "Vacation Loan"*
+
