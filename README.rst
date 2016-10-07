@@ -6,7 +6,7 @@ The NIAM diagram of restmode database.
 .. image:: src/images/restmode.png
 
 You find the database description here: \
-https://github.com/Orathai/restmode/wiki/database-schame
+https://github.com/Orathai/restmode/wiki/database-schema
 
 Process from client
 -------------------
@@ -21,24 +21,24 @@ References
 
 Testing application with cURL
 -----------------------------
-1 : Running the application::
+1 : Running application::
 
      mvn spring-boot:run
 2 : Running test file: AgreementServiceIntegrationTest.java::
 
-     curl -s http://localhost:9000/customers
+     #curl -s http://localhost:9000/customers
       {
        "customerEmail": "p@p.com",
        "customerName": "Peter Pan",
        "id": 4
       }
-      curl -s http://localhost:9000/agreements
+      #curl -s http://localhost:9000/agreements
       [{
         "agreementDetail": "Vacation Loan",
         "id": 3
       }]
 
-      curl -s http://localhost:9000/agreementdetails
+      #curl -s http://localhost:9000/agreementdetails
       [
         ...
 
