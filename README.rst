@@ -8,6 +8,12 @@ The NIAM diagram of restmode database.
 You find the database description here: \
 https://github.com/Orathai/restmode/wiki/database-schame
 
+Process from client
+-------------------
+
+* INPUT : **deal** (customername, customeremail, dealdetail)
+* OUTPUT : **agreementdetail** (id, **customer** , **agreement** , agreementstatus)
+
 References
 ----------
 
