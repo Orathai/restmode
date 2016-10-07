@@ -24,7 +24,12 @@ Testing application with cURL
 1 : Running application::
 
      mvn spring-boot:run
-2 : Running test file: AgreementServiceIntegrationTest.java::
+     
+2 : Running test file AgreementServiceIntegrationTest.java. You can run the test from your IDE, or on your command line     with::
+
+     mvn test -Dtest=AgreementServiceIntegrationTest
+     
+3 : This creates customer, agreement and agreementdetail, which is contains id, customer , agreement and agreementstatus. Then you can do::
 
      #curl -s http://localhost:9000/customers
       {
