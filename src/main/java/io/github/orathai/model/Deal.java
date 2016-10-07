@@ -1,31 +1,31 @@
 package io.github.orathai.model;
 
 public class Deal {
-    private String name;
-    private String email;
-    private String deal;
+    private String customerName;
+    private String customerEmail;
+    private String dealDetail;
 
-    public String getName() {
-        return name;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getCustomerEmail() {
+        return customerEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCustomerEmail(String customerEmail) {
+        this.customerEmail = customerEmail;
     }
 
-    public String getDeal() {
-        return deal;
+    public String getDealDetail() {
+        return dealDetail;
     }
 
-    public void setDeal(String deal) {
-        this.deal = deal;
+    public void setDealDetail(String dealDetail) {
+        this.dealDetail = dealDetail;
     }
 }

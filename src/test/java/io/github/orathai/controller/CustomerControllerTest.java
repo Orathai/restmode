@@ -2,7 +2,6 @@ package io.github.orathai.controller;
 
 import io.github.orathai.Application;
 import io.github.orathai.model.CustomerModel;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +17,10 @@ import java.net.URI;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+/*
+* Integration test, need to run the application before running the test cases
+* */
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource(properties = {"management.port=0"})
@@ -28,19 +31,11 @@ public class CustomerControllerTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
-    /*@Autowired
-    private CustomerDAO customerDAO;*/
-
     @LocalServerPort
     private int port;
 
     @Value("${local.server.port}")
     private int managerPort;
-
-    @Before
-    public void setup() throws Exception {
-
-    }
 
     private final String REST_SERVICE_URI = "http://localhost:9000/customers";
 

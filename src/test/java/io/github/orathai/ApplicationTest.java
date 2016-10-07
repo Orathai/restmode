@@ -16,6 +16,10 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+
+/*
+* Integration test, need to run the application before running the test cases
+* */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource(properties = {"management.port=0"})
@@ -36,7 +40,7 @@ public class ApplicationTest {
     private final String REST_SERVICE_URI = "http://localhost:" + this.port+"/customers";
 
     @Test
-    public void getAll() throws Exception {
+    public void getAllCustomer() throws Exception {
 
         System.out.println("Customer lists API");
 
@@ -55,7 +59,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void shouldReturn200WhenSendingRequestToController() throws Exception {
+    public void getMockCustomerObject() throws Exception {
 
 
         String body = this.testRestTemplate.getForObject("/customers/1", String.class);

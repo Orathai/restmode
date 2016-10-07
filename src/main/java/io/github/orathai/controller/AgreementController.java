@@ -25,11 +25,13 @@ public class AgreementController {
     @Autowired
     private AgreementDAO agreementDAO;
 
+    //curl -s http://localhost:9000/agreements
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<AgreementModel>> getAll() {
         return new ResponseEntity<List<AgreementModel>>(agreementDAO.findAllAgreement(), HttpStatus.OK);
     }
 
+    //curl -s http://localhost:9000/agreements/{id}
     @RequestMapping(method = RequestMethod.GET, value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AgreementModel> getAgreementWithId(@PathVariable Long id) {
         System.out.println("Fetching Agreement with id " + id);
@@ -42,6 +44,7 @@ public class AgreementController {
         return new ResponseEntity<AgreementModel>(agreement, HttpStatus.OK);
     }
 
+    //
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ResponseEntity<Void> createAgreement(@RequestBody AgreementModel agreementModel,
                                                 UriComponentsBuilder ucBuilder) {

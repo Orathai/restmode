@@ -27,17 +27,6 @@ public class AgreementDetailDAOTest {
     private AgreementDAO agreementDAO;
 
     @Test
-    public void findByCustomerIdAndAgreementId() throws Exception {
-
-        initData();
-
-        AgreementDetailModel foundAgreementDetailModel =
-                agreementDetailDAO.findByCustomerIdAndAgreementId(1L, 1L);
-        Assert.assertEquals("name", foundAgreementDetailModel.getCustomerModel().getCustomerName());
-        Assert.assertEquals("loan detail", foundAgreementDetailModel.getAgreementModel().getAgreementDetail());
-    }
-
-    @Test
     public void findAgreementDetailByCustomerId() throws Exception {
 
         initData();
@@ -66,8 +55,6 @@ public class AgreementDetailDAOTest {
 
     @Test
     public void updateAgreementStatus() throws Exception {
-
-        //initData();
 
         AgreementDetailModel updateStatus = agreementDetailDAO.finById(2L);
         //updateStatus.setAgreementStatus(AgreementStatus.SENT_TO_CUSTOMER);

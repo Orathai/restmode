@@ -36,17 +36,17 @@ public class AgreementService {
 
     private static final int FAILURE_RESULT = 0;
 
-        @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ResponseEntity<Void> createAgreementDetail(UriComponentsBuilder ucBuilder,
                                                       @RequestBody Deal deal) {
 
+        if (checkEmptyValue(deal)) return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 
         System.out.println("Creating new customer");
-        CustomerModel customer = createCustomer(deal.getName(), deal.getEmail());
-
+        CustomerModel customer = createCustomer(deal.getCustomerName(), deal.getCustomerEmail());
 
         System.out.println("Creating new agreement");
-        AgreementModel agreement = createAgreement(deal.getDeal());
+        AgreementModel agreement = createAgreement(deal.getDealDetail());
 
         System.out.println("Create deal between customer and agreement");
         AgreementDetailModel agreementDetail = createAgreementDetail(customer, agreement);
@@ -65,12 +65,37 @@ public class AgreementService {
             System.out.println("Unable to send an email");
             return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
         }
+
+        //Update new status(SENT_TO_CUSTOMER) into AgreementDetail
         agreementDetail.setAgreementStatus(AgreementStatus.SENT_TO_CUSTOMER);
         int statusResult = agreementDetailDAO.updateAgreementDetail(agreementDetail);
 
+        if (statusResult == FAILURE_RESULT) {
+            System.out.println("ERROR: cannot find this customer or agreement");
+            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+        }
+
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/agreements/create").buildAndExpand(agreementDetail.getId()).toUri());
-        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+        headers.setLocation(ucBuilder.path("/agreementservices/create")
+                .buildAndExpand(agreementDetail.getId()).toUri());
+
+        System.out.println("done..");
+
+        return new ResponseEntity<Void>(headers, HttpStatus.OK);
+    }
+
+    private boolean checkEmptyValue(@RequestBody Deal deal) {
+        boolean isDealEmpty = deal.getDealDetail() == null || deal.getDealDetail().trim().length() == 0;
+        if (isDealEmpty) {
+            System.out.println("cannot create null agreement");
+            return true;
+        }
+        boolean isEmailEmpty = deal.getCustomerEmail() == null || deal.getCustomerEmail().trim().length() == 0;
+        if (isEmailEmpty) {
+            System.out.println("cannot create null email");
+            return true;
+        }
+        return false;
     }
 
     private CustomerModel createCustomer(String name, String email) {
@@ -93,8 +118,9 @@ public class AgreementService {
     }
 
     private AgreementDetailModel createAgreementDetail(CustomerModel customerModel,
-                                                       AgreementModel agreementModel){
+                                                       AgreementModel agreementModel) {
         AgreementDetailModel agreementDetail = new AgreementDetailModel();
+        agreementDetail.setId(10);
         agreementDetail.setAgreementModel(agreementModel);
         agreementDetail.setCustomerModel(customerModel);
         agreementDetail.setAgreementStatus(AgreementStatus.PROCESSING);

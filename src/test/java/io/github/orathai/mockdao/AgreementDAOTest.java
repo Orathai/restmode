@@ -20,14 +20,7 @@ public class AgreementDAOTest {
 
     @Test
     public void findByAgreementId() throws Exception {
-
-        /*Agreement agreement = new Agreement();
-        agreement.setId(1L);
-        agreement.setAgreementDetail("loan");*/
-
-        //agreementDAO.addAgreement(agreement);
         AgreementModel foundAgreement = agreementDAO.findByAgreementId(1L);
-
         Assert.assertEquals("property loan", foundAgreement.getAgreementDetail());
 
     }
@@ -37,7 +30,6 @@ public class AgreementDAOTest {
 
         List<AgreementModel> agreementList = agreementDAO.findAllAgreement();
         Assert.assertEquals(2, agreementList.size());
-
     }
 
     @Ignore
